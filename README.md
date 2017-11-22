@@ -1,0 +1,2 @@
+# ModBusTcpTools
+一个Modbus的C#开发示例，运用HslCommunication.dll组件库实现，包含了一个服务端的演示和一个客户端演示，客户端可用于进行Modbus测试。
