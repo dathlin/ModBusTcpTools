@@ -23,6 +23,8 @@ namespace Modbus.Client
             groupBox3.Enabled = false;
 
             userButton2.Enabled = false;
+
+            LogNet = new HslCommunication.LogNet.LogNetSingle(Application.StartupPath + @"\log.txt");
         }
 
         private void userButton1_Click(object sender, EventArgs e)
@@ -30,6 +32,8 @@ namespace Modbus.Client
             try
             {
                 modBusTcpClient = new HslCommunication.ModBus.ModBusTcpClient(textBox1.Text, int.Parse(textBox2.Text));
+                modBusTcpClient.LogNet = LogNet;
+                
                 textBox1.Enabled = false;
                 textBox2.Enabled = false;
                 userButton1.Enabled = false;
@@ -160,15 +164,17 @@ namespace Modbus.Client
                 return;
             }
 
-
-            HslCommunication.OperateResult write = modBusTcpClient.WriteOneRegister(address, value);
-            if(write.IsSuccess)
+            for (int i = 0; i < 200; i++)
             {
-                MessageInfoShow("写入地址" + address + "成功");
-            }
-            else
-            {
-                MessageBox.Show(write.ToMessageShowString());
+                HslCommunication.OperateResult write = modBusTcpClient.WriteOneRegister(address, value);
+                if (write.IsSuccess)
+                {
+                    MessageInfoShow("写入地址" + address + "成功");
+                }
+                else
+                {
+                    MessageBox.Show(write.ToMessageShowString());
+                }
             }
         }
         private void userButton9_Click(object sender, EventArgs e)
@@ -316,6 +322,62 @@ namespace Modbus.Client
             sb.Append("]");
 
             return sb.ToString();
+        }
+
+        private void userButton10_Click(object sender, EventArgs e)
+        {
+            userButton10.Enabled = false;
+            System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadBackground));
+                thread.IsBackground = true;
+                thread.Start();
+
+        }
+
+        private void ThreadBackground()
+        {
+            while (true)
+            {
+                System.Threading.Thread.Sleep(1000);
+
+                HslCommunication.OperateResult<byte[]> result = modBusTcpClient.ReadRegister(20, 1);
+
+                if (result.IsSuccess)
+                {
+                    ushort value = BitConverter.ToUInt16(result.Content, 0);
+                    if (value != 0)
+                    {
+                        if (modBusTcpClient.WriteOneRegister(10, value).IsSuccess)
+                        {
+                            LogNet?.WriteDebug("地址10写入(" + value + ")成功！");
+                            if (!modBusTcpClient.WriteOneRegister(10, 0).IsSuccess)
+                                LogNet?.WriteDebug("地址10写入0失败！");
+                            if (!modBusTcpClient.WriteOneRegister(12, 1).IsSuccess)
+                                LogNet?.WriteDebug("地址12写入1失败！");
+                        }
+                        else
+                        {
+                            LogNet?.WriteDebug("地址10写入(" + value + ")失败！");
+                        }
+                    }
+                }
+                else
+                {
+                    LogNet?.WriteDebug("地址0读取失败！");
+                }
+            }
+        }
+
+
+        private HslCommunication.LogNet.ILogNet LogNet;
+
+        private void userButton11_Click(object sender, EventArgs e)
+        {
+            modBusTcpClient.ConnectServer();
+        }
+
+        private void Client_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            modBusTcpClient.ConnectClose();
         }
     }
 }
