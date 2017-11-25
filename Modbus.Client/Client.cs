@@ -135,15 +135,18 @@ namespace Modbus.Client
 
         private void userButton6_Click(object sender, EventArgs e)
         {
-            // 读寄存器
-            HslCommunication.OperateResult<ushort, ushort> result = GetAddressAndLength();
-            if(result.IsSuccess)
+            for (int i = 0; i < 20; i++)
             {
-                MessageResultShow(modBusTcpClient.ReadRegister(result.Content1, result.Content2));
-            }
-            else
-            {
-                MessageBox.Show(result.ToMessageShowString());
+                // 读寄存器
+                HslCommunication.OperateResult<ushort, ushort> result = GetAddressAndLength();
+                if (result.IsSuccess)
+                {
+                    MessageResultShow(modBusTcpClient.ReadRegister(result.Content1, result.Content2));
+                }
+                else
+                {
+                    MessageBox.Show(result.ToMessageShowString());
+                }
             }
         }
 
