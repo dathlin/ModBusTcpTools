@@ -382,5 +382,21 @@ namespace Modbus.Client
         {
             modBusTcpClient.ConnectClose();
         }
+
+        private void userButton12_Click(object sender, EventArgs e)
+        {
+            // 压力测试
+            new System.Threading.Thread(ThreadRead) { IsBackground = true }.Start();
+            new System.Threading.Thread(ThreadRead) { IsBackground = true }.Start();
+            new System.Threading.Thread(ThreadRead) { IsBackground = true }.Start();
+            new System.Threading.Thread(ThreadRead) { IsBackground = true }.Start();
+        }
+        private void ThreadRead()
+        {
+            for (int i = 0; i < 10000; i++)
+            {
+                modBusTcpClient.ReadRegister(0, 5);
+            }
+        }
     }
 }
