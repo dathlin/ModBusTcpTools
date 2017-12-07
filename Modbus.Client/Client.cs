@@ -67,7 +67,7 @@ namespace Modbus.Client
             // 发送数据
             try
             {
-                HslCommunication.OperateResult<byte[]> operate = modBusTcpClient.ReadFromModBusServer(
+                HslCommunication.OperateResult<byte[]> operate = modBusTcpClient.ReadFromServerCore(
                     HslCommunication.BasicFramework.SoftBasic.HexStringToBytes(textBox3.Text));
 
                 // 展示结果
@@ -167,7 +167,7 @@ namespace Modbus.Client
                 return;
             }
 
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 1; i++)
             {
                 HslCommunication.OperateResult write = modBusTcpClient.WriteOneRegister(address, value);
                 if (write.IsSuccess)
