@@ -42,6 +42,7 @@
             this.userButton3 = new HslCommunication.Controls.UserButton();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.userButton12 = new HslCommunication.Controls.UserButton();
             this.userButton11 = new HslCommunication.Controls.UserButton();
             this.userButton10 = new HslCommunication.Controls.UserButton();
             this.userButton8 = new HslCommunication.Controls.UserButton();
@@ -62,7 +63,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.userButton12 = new HslCommunication.Controls.UserButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -252,11 +252,26 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "特殊测试";
             // 
+            // userButton12
+            // 
+            this.userButton12.BackColor = System.Drawing.Color.Transparent;
+            this.userButton12.CustomerInformation = "";
+            this.userButton12.EnableColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
+            this.userButton12.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.userButton12.Location = new System.Drawing.Point(613, 103);
+            this.userButton12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.userButton12.Name = "userButton12";
+            this.userButton12.Size = new System.Drawing.Size(77, 27);
+            this.userButton12.TabIndex = 36;
+            this.userButton12.UIText = "压力测试";
+            this.userButton12.Click += new System.EventHandler(this.userButton12_Click);
+            // 
             // userButton11
             // 
             this.userButton11.BackColor = System.Drawing.Color.Transparent;
             this.userButton11.CustomerInformation = "";
             this.userButton11.EnableColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
+            this.userButton11.Enabled = false;
             this.userButton11.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.userButton11.Location = new System.Drawing.Point(340, 103);
             this.userButton11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -457,20 +472,6 @@
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 16;
             this.label4.Text = "读数据：";
-            // 
-            // userButton12
-            // 
-            this.userButton12.BackColor = System.Drawing.Color.Transparent;
-            this.userButton12.CustomerInformation = "";
-            this.userButton12.EnableColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
-            this.userButton12.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.userButton12.Location = new System.Drawing.Point(613, 103);
-            this.userButton12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.userButton12.Name = "userButton12";
-            this.userButton12.Size = new System.Drawing.Size(77, 27);
-            this.userButton12.TabIndex = 36;
-            this.userButton12.UIText = "压力测试";
-            this.userButton12.Click += new System.EventHandler(this.userButton12_Click);
             // 
             // Client
             // 
