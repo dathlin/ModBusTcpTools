@@ -385,7 +385,7 @@ namespace Modbus.Client
 
         private void Client_FormClosing(object sender, FormClosingEventArgs e)
         {
-            modBusTcpClient.ConnectClose();
+            if (modBusTcpClient != null) modBusTcpClient.ConnectClose( );
         }
 
         private void userButton12_Click(object sender, EventArgs e)
