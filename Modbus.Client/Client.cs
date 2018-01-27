@@ -42,9 +42,9 @@ namespace Modbus.Client
                 groupBox2.Enabled = true;
                 groupBox3.Enabled = true;
 
-                if(!modBusTcpClient.ConnectServer().IsSuccess)
+                if (!modBusTcpClient.ConnectServer( ).IsSuccess)
                 {
-                    MessageBox.Show("连接服务器失败！");
+                    MessageBox.Show( "连接服务器失败！" );
                 }
             }
             catch(Exception ex)
