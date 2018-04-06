@@ -1,6 +1,8 @@
 # ModBusTcpTools
 一个Modbus Tcp的C#开发示例，运用HslCommunication.dll组件库提供的功能类实现。
 
+## 声明：本项目不再维护，基于HslCommunication.dll-v4.3.0版本创建，最新的客户端和服务器演示项目已经集成到了HslCommunication开源项目里了，请参见这个项目的源代码即可！
+
 关于该组件库的详细API博客见
 [http://www.cnblogs.com/dathlin/p/7703805.html](http://www.cnblogs.com/dathlin/p/7703805.html)
 目前版本号：[![NuGet Status](https://img.shields.io/nuget/v/HslCommunication.svg)](https://www.nuget.org/packages/HslCommunication/)
